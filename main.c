@@ -1,69 +1,60 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-void DataStructure(){
-    char A[]="\n   ISBAT University 2025-Results ";
-    printf("%s\n\n",A);
-    char i[]="Data Structure & Algorithm";
-    printf("   1. %s\n",i);
-    char z[]="Data storage & Security";
-    printf("   2. %s\n",z);
-    char y[]="Computer Organ & Architecture";
-    printf("   3. %s\n\n",y);
-    int a_num, c_num, m_num, e_num;
-    printf("  Enter Assignment marks: ");
-    scanf("%d",&a_num);
-    printf("  Enter Coursework marks: ");
-    scanf("%d",&c_num);
-    printf("  Enter Mid term marks: ");
-    scanf("%d",&m_num);
-    printf("  Enter End term marks: ");
-    scanf("%d",&e_num);
-
-    int s = a_num + c_num + m_num + e_num;
-    float average = s / 4.0;
-    printf("Average for Data Structure Algorithm: %.2f\n\n",average);
+void deleteAtBeginning(int arr[], int *size) {
+    if (*size <= 0) {
+        printf("Array is empty.\n");
+        return;
+    }
+    for (int i = 0; i < *size - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    (*size)--; // Decrease size
 }
 
-void DataStorage(){
-  int a_num,c_num,m_num,e_num;
-    printf("  Enter Assignment marks: ");
-    scanf("%d",&a_num);
-    printf("  Enter Coursework marks: ");
-    scanf("%d",&c_num);
-    printf("  Enter Mid term marks: ");
-    scanf("%d",&m_num);
-    printf("  Enter End term marks: ");
-    scanf("%d",&e_num);
-
-    int s = a_num + c_num + m_num + e_num;
-    float average = s / 4.0;
-    printf("Average for Data Storage & Security: %.2f\n\n",average);
+void deleteAtMiddle(int arr[], int *size, int position) {
+    if (position < 0 || position >= *size) {
+        printf("Invalid position.\n");
+        return;
+    }
+    for (int i = position; i < *size - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    (*size)--; // Decrease size
 }
 
-
-void computer(){
-int a_num,c_num,m_num,e_num;
-    printf("  Enter Assignment marks: ");
-    scanf("%d",&a_num);
-    printf("  Enter Coursework marks: ");
-    scanf("%d",&c_num);
-    printf("  Enter Mid term marks: ");
-    scanf("%d",&m_num);
-    printf("  Enter End term marks: ");
-    scanf("%d",&e_num);
-
-    int s = a_num + c_num + m_num + e_num;
-    float average = s / 4.0;
-    printf("Average for Computer organisation & Architecture: %.2f\n",average);
+void deleteAtEnd(int arr[], int *size) {
+    if (*size <= 0) {
+        printf("Array is empty.\n");
+        return;
+    }
+    (*size)--; // Decrease size
 }
 
-int main(){
-    DataStructure();
-    DataStorage();
-    computer();
+void printArray(int arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int arr[5] = {1, 2, 3, 4, 8};
+    int size = 5;
+
+    printf("Original array: ");
+    printArray(arr, size);
+
+    deleteAtBeginning(arr, &size);
+    printf("After deleting the beginning: ");
+    printArray(arr, size);
+
+    deleteAtMiddle(arr, &size, 2);
+    printf("After deleting at the middle: ");
+    printArray(arr, size);
+
+    deleteAtEnd(arr, &size);
+    printf("After deleting at the end: ");
+    printArray(arr, size);
+
     return 0;
 }
-
-
-
